@@ -1,27 +1,27 @@
 {
-  "name": "cdk-kda-flink-sample",
+  "name": "cdk-kda-pyflink-sample",
   "version": "0.1.0",
   "bin": {
-    "cdk-kda-flink-sample": "bin/cdk-kda-flink-sample.js"
+    "cdk-kda-pyflink-sample": "bin/cdk-kda-pyflink-sample.js"
   },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "1.62.0",
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
-    "jest": "^26.4.2",
-    "ts-jest": "^26.2.0",
-    "aws-cdk": "1.62.0",
+    "aws-cdk": "^1.95.0",
     "ts-node": "^8.1.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/core": "1.62.0",
+    "@aws-cdk/aws-iam": "^1.95.0",
+    "@aws-cdk/aws-kinesis": "^1.95.0",
+    "@aws-cdk/aws-kinesisanalytics": "^1.95.0",
+    "@aws-cdk/core": "^1.95.0",
+    "aws-sdk": "^2.879.0",
     "source-map-support": "^0.5.16"
   }
 }

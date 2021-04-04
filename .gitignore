@@ -1,5 +1,4 @@
 *.js
-!jest.config.js
 *.d.ts
 node_modules
 
@@ -9,3 +8,6 @@ cdk.out
 
 # Parcel default cache directory
 .parcel-cache
+
+kda-app/amazon-kinesis-connector-flink-*.jar
+kda-app.zip
