@@ -1,6 +1,6 @@
 # cdk-kda-pyflink-sample
 
-- Edit artifact bucket (default: hogefuga)
+- Edit artifact bucket name (default: hogefuga) on `Makefile` & `lib/cdk-kda-pyflink-sample-stack.ts`
 
 ```
 $ make upload

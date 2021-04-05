@@ -6,7 +6,6 @@ import { Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect } from 
 import { LogGroup, LogStream, RetentionDays } from '@aws-cdk/aws-logs'
 import S3 = require('aws-sdk/clients/s3')
 import { createHash } from 'crypto'
-import { readFileSync } from 'fs'
 
 export class CdkKdaPyFlinkSampleStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -36,7 +35,7 @@ export class CdkKdaPyFlinkSampleStack extends cdk.Stack {
 
   distBucket = () => {
     return new Bucket(this, "DistBucket", {
-      bucketName: `cdk-kda-pyflink-sample-bucket-${this.region}`,
+      bucketName: `cdk-kda-pyflink-sample-bucket-${this.account}`,
     });
   }
 
@@ -50,7 +49,7 @@ export class CdkKdaPyFlinkSampleStack extends cdk.Stack {
     return { logGroup, logStream }
   }
 
-  kdaRole = (artifactBucketArn: string, srcStream: Stream, distBucket: Bucket, logGroup: LogGroup, logStream: LogStream) => {
+  kdaRole = (artifactBucketArn: string, srcStream: Stream, destBucket: Bucket, logGroup: LogGroup, logStream: LogStream) => {
     return new Role(this, 'KDARole', {
       assumedBy: new ServicePrincipal('kinesisanalytics.amazonaws.com'),
       inlinePolicies: {
@@ -82,8 +81,8 @@ export class CdkKdaPyFlinkSampleStack extends cdk.Stack {
                 "s3:PutObject"
               ],
               resources: [
-                distBucket.bucketArn,
-                `${distBucket.bucketArn}/*`
+                destBucket.bucketArn,
+                `${destBucket.bucketArn}/*`
               ]
             }),
             new PolicyStatement({
@@ -144,7 +143,7 @@ export class CdkKdaPyFlinkSampleStack extends cdk.Stack {
           monitoringConfiguration: {
             configurationType: "CUSTOM",
             logLevel: "INFO",
-            metricsLevel: "TASK",
+            metricsLevel: "APPLICATION",
           },
           parallelismConfiguration: {
             autoScalingEnabled: false,
