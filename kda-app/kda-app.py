@@ -52,9 +52,10 @@ def main():
             input_property_map["aws.region"],
             input_property_map["flink.stream.initpos"])
     )
+
     table_env.execute_sql(
         """CREATE TABLE {0} (
-                foo_sum BIGINT
+                bar BIGINT
             ) WITH (
                 'connector' = 'filesystem',
                 'path' = 's3a://{1}/',
@@ -68,7 +69,7 @@ def main():
 
     table_env.execute_sql(
         """INSERT INTO {0}
-            SELECT SUM(foo) as foo_sum
+            SELECT foo as bar
             FROM {1}
         """.format(output_table_name, input_table_name)
     )
