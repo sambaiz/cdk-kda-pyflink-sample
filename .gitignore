@@ -9,5 +9,5 @@ cdk.out
 # Parcel default cache directory
 .parcel-cache
 
-kda-app/amazon-kinesis-connector-flink-*.jar
+kda-app/amazon-kinesis-sql-connector-flink-*.jar
 kda-app.zip

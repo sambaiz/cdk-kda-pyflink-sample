@@ -166,7 +166,7 @@ export class CdkKdaPyFlinkSampleStack extends cdk.Stack {
             propertyGroupId: "kinesis.analytics.flink.run.options",
             propertyMap: {
               "python": "kda-app.py",
-              "jarfile": "amazon-kinesis-connector-flink-2.0.2.jar",
+              "jarfile": "amazon-kinesis-sql-connector-flink-2.0.3.jar",
             }
           }, {
             propertyGroupId: "consumer.config.0",
